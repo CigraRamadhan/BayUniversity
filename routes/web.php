@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\KelasController;
+use App\Http\Controllers\MahasiswaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -11,16 +14,13 @@ Route::get('/tes', function () {
 });
 
 Route::get('/dosen', function () {
-    return view('Dosen.index');
+    return view( 'Dosen.index');
 });
 
-use App\Http\Controllers\JurusanController;
 
 Route::resource('jurusan', JurusanController::class);
 
-use App\Http\Controllers\KelasController;
 
 Route::resource('kelas', KelasController::class);
 
-use App\Http\Controllers\MahasiswaController;
 Route::resource('mahasiswa', MahasiswaController::class);
