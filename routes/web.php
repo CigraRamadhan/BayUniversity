@@ -4,23 +4,18 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\DosenController;
+use App\Http\Controllers\MataKuliahController;
+use App\Http\Controllers\JadwalController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/tes', function () {
-    return "Hello, World!";
-});
-
-Route::get('/dosen', function () {
-    return view( 'Dosen.index');
-});
-
-
 Route::resource('jurusan', JurusanController::class);
-
-
 Route::resource('kelas', KelasController::class);
-
 Route::resource('mahasiswa', MahasiswaController::class);
+Route::resource('dosen', DosenController::class);
+Route::resource('matakuliah', MataKuliahController::class);
+Route::resource('jadwal', JadwalController::class);
+
