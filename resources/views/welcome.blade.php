@@ -18,9 +18,11 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
+        .navbar-custom .nav-link {
+            transition: 0.3s;
+        }
         .navbar-custom .nav-link:hover {
             transform: translateY(-2px);
-            transition: 0.3s;
             text-decoration: underline;
         }
         .hero {
@@ -36,6 +38,7 @@
             border-radius: 15px;
             border: none;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            background: white;
         }
         .card-menu:hover {
             transform: translateY(-5px);
@@ -54,6 +57,25 @@
             gap: 10px;
             justify-content: center;
         }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo-box {
+            background: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-box span {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
@@ -62,7 +84,10 @@
     <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container">
             <a class="navbar-brand text-white fw-bold fs-4" href="/">
-                <i class="bi bi-building"></i> BayUniversity
+                <div class="logo-box">
+                    <span>B</span>
+                </div>
+                BayUniversity
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -74,8 +99,11 @@
                     <li class="nav-item"><a class="nav-link text-white" href="/kelas"><i class="bi bi-building"></i> Kelas</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="/mahasiswa"><i class="bi bi-people"></i> Mahasiswa</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="/dosen"><i class="bi bi-person-badge"></i> Dosen</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="/matkul"><i class="bi bi-journal-bookmark-fill"></i> Matkul</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="/matakuliah"><i class="bi bi-journal-bookmark-fill"></i> Mata Kuliah</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="/jadwal"><i class="bi bi-calendar-week"></i> Jadwal</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="/krs"><i class="bi bi-card-list"></i> KRS</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="/nilai"><i class="bi bi-star"></i> Nilai</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="/users"><i class="bi bi-person-circle"></i> User</a></li>
                 </ul>
             </div>
         </div>
@@ -86,65 +114,92 @@
         <div class="hero text-center">
             <h1 class="display-4 fw-bold" style="color: #764ba2;">Selamat Datang di BayUniversity</h1>
             <p class="lead text-secondary">Sistem Informasi Akademik Terintegrasi</p>
-            <p class="mb-4">Kelola data Jurusan, Kelas, Mahasiswa, Dosen, Mata Kuliah, dan Jadwal dengan mudah.</p>
+            <p class="mb-4">Kelola data Jurusan, Kelas, Mahasiswa, Dosen, Mata Kuliah, Jadwal, KRS, Nilai, dan User dengan mudah.</p>
             <div class="btn-group-custom">
-                <a href="/mahasiswa" class="btn btn-primary btn-lg"><i class="bi bi-people"></i> Mahasiswa</a>
-                <a href="/jurusan" class="btn btn-outline-secondary btn-lg"><i class="bi bi-book"></i> Jurusan</a>
-                <a href="/kelas" class="btn btn-outline-success btn-lg"><i class="bi bi-building"></i> Kelas</a>
-                <a href="/dosen" class="btn btn-outline-info btn-lg"><i class="bi bi-person-badge"></i> Dosen</a>
-                <a href="/matkul" class="btn btn-outline-warning btn-lg"><i class="bi bi-journal-bookmark-fill"></i> Matkul</a>
-                <a href="/jadwal" class="btn btn-outline-danger btn-lg"><i class="bi bi-calendar-week"></i> Jadwal</a>
+                <a href="/mahasiswa" class="btn btn-primary btn-sm"><i class="bi bi-people"></i> Mahasiswa</a>
+                <a href="/jurusan" class="btn btn-outline-secondary btn-sm"><i class="bi bi-book"></i> Jurusan</a>
+                <a href="/kelas" class="btn btn-outline-success btn-sm"><i class="bi bi-building"></i> Kelas</a>
+                <a href="/dosen" class="btn btn-outline-info btn-sm"><i class="bi bi-person-badge"></i> Dosen</a>
+                <a href="/matakuliah" class="btn btn-outline-warning btn-sm"><i class="bi bi-journal-bookmark-fill"></i> Mata Kuliah</a>
+                <a href="/jadwal" class="btn btn-outline-danger btn-sm"><i class="bi bi-calendar-week"></i> Jadwal</a>
+                <a href="/krs" class="btn btn-outline-primary btn-sm"><i class="bi bi-card-list"></i> KRS</a>
+                <a href="/nilai" class="btn btn-outline-success btn-sm"><i class="bi bi-star"></i> Nilai</a>
+                <a href="/users" class="btn btn-outline-secondary btn-sm"><i class="bi bi-person-circle"></i> User</a>
             </div>
         </div>
 
-        <!-- Menu Card (6 card) -->
+        <!-- Menu Card (9 card) -->
         <div class="row mt-5 g-4">
-            <!-- Jurusan (Kamu) -->
+            <!-- Jurusan -->
             <div class="col-md-4">
-                <div class="card-menu text-center p-4 bg-white" onclick="location.href='/jurusan'">
+                <div class="card-menu text-center p-4" onclick="location.href='/jurusan'">
                     <i class="bi bi-book display-1 text-primary"></i>
                     <h3 class="mt-3">Jurusan</h3>
                     <p class="text-secondary">Tambah, edit, dan hapus data jurusan</p>
                 </div>
             </div>
-            <!-- Kelas (Kamu) -->
+            <!-- Kelas -->
             <div class="col-md-4">
-                <div class="card-menu text-center p-4 bg-white" onclick="location.href='/kelas'">
+                <div class="card-menu text-center p-4" onclick="location.href='/kelas'">
                     <i class="bi bi-building display-1 text-success"></i>
                     <h3 class="mt-3">Kelas</h3>
                     <p class="text-secondary">Tambah, edit, dan hapus data kelas</p>
                 </div>
             </div>
-            <!-- Mahasiswa (Kamu) -->
+            <!-- Mahasiswa -->
             <div class="col-md-4">
-                <div class="card-menu text-center p-4 bg-white" onclick="location.href='/mahasiswa'">
+                <div class="card-menu text-center p-4" onclick="location.href='/mahasiswa'">
                     <i class="bi bi-people display-1 text-danger"></i>
                     <h3 class="mt-3">Mahasiswa</h3>
                     <p class="text-secondary">Tambah, edit, dan hapus data mahasiswa</p>
                 </div>
             </div>
-            <!-- Dosen (Teman) -->
+            <!-- Dosen -->
             <div class="col-md-4">
-                <div class="card-menu text-center p-4 bg-white" onclick="location.href='/dosen'">
+                <div class="card-menu text-center p-4" onclick="location.href='/dosen'">
                     <i class="bi bi-person-badge display-1 text-info"></i>
                     <h3 class="mt-3">Dosen</h3>
                     <p class="text-secondary">Tambah, edit, dan hapus data dosen</p>
                 </div>
             </div>
-            <!-- Mata Kuliah (Teman) -->
+            <!-- Mata Kuliah -->
             <div class="col-md-4">
-                <div class="card-menu text-center p-4 bg-white" onclick="location.href='/matkul'">
+                <div class="card-menu text-center p-4" onclick="location.href='/matakuliah'">
                     <i class="bi bi-journal-bookmark-fill display-1 text-warning"></i>
                     <h3 class="mt-3">Mata Kuliah</h3>
                     <p class="text-secondary">Tambah, edit, dan hapus data mata kuliah</p>
                 </div>
             </div>
-            <!-- Jadwal (Teman) -->
+            <!-- Jadwal -->
             <div class="col-md-4">
-                <div class="card-menu text-center p-4 bg-white" onclick="location.href='/jadwal'">
+                <div class="card-menu text-center p-4" onclick="location.href='/jadwal'">
                     <i class="bi bi-calendar-week display-1 text-secondary"></i>
                     <h3 class="mt-3">Jadwal</h3>
-                    <p class="text-secondary">Tambah, edit, dan hapus data jadwal kuliah</p>
+                    <p class="text-secondary">Tambah, edit, dan hapus data jadwal</p>
+                </div>
+            </div>
+            <!-- KRS -->
+            <div class="col-md-4">
+                <div class="card-menu text-center p-4" onclick="location.href='/krs'">
+                    <i class="bi bi-card-list display-1 text-primary"></i>
+                    <h3 class="mt-3">KRS</h3>
+                    <p class="text-secondary">Kelola Kartu Rencana Studi mahasiswa</p>
+                </div>
+            </div>
+            <!-- Nilai -->
+            <div class="col-md-4">
+                <div class="card-menu text-center p-4" onclick="location.href='/nilai'">
+                    <i class="bi bi-star display-1 text-success"></i>
+                    <h3 class="mt-3">Nilai</h3>
+                    <p class="text-secondary">Kelola nilai mahasiswa</p>
+                </div>
+            </div>
+            <!-- User -->
+            <div class="col-md-4">
+                <div class="card-menu text-center p-4" onclick="location.href='/users'">
+                    <i class="bi bi-person-circle display-1 text-info"></i>
+                    <h3 class="mt-3">User</h3>
+                    <p class="text-secondary">Kelola akun pengguna sistem</p>
                 </div>
             </div>
         </div>
