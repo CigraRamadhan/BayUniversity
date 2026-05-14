@@ -16,41 +16,37 @@
     <div class="container mt-4">
         <div class="container mt-4">
             <div class="d-flex justify-content-between align-items-center">
-                <h1>Data Jadwal</h1>
-                <a href="{{ route('jadwal.create') }}" class="btn btn-success">Tambah Jadwal</a>
+                <h1>Data Mata Kuliah</h1>
+                <a href="{{ route('matakuliah.create') }}" class="btn btn-success">Tambah Mata Kuliah</a>
             </div>
         </div>
         <table class="table table-dark table-striped">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Mata Kuliah</th>
-                    <th>Dosen</th>
-                    <th>Kelas</th>
-                    <th>Hari</th>
-                    <th>Jam Mulai</th>
-                    <th>Jam Selesai</th>
-                    <th>Ruangan</th>
+                    <th>Kode</th>
+                    <th>Nama</th>
+                    <th>SKS</th>
+                    <th>Semester</th>
+                    <th>Jurusan</th>
                     <th></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($jadwal as $j)
+                @foreach($matakuliah as $mk)
                     <tr>
-                        <td>{{ $j->id }}</td>
-                        <td>{{ $j->mata_kuliah}}</td>
-                        <td>{{ $j->dosen}}</td>
-                        <td>{{ $j->kelas}}</td>
-                        <td>{{ $j->hari}}</td>
-                        <td>{{ $j->jam_mulai}}</td>
-                        <td>{{ $j->jam_selesai}}</td>
-                        <td>{{ $j->ruangan}}</td>
+                        <td>{{ $mk->id }}</td>
+                        <td>{{ $mk->kode_matkul}}</td>
+                        <td>{{ $mk->nama_matkul }}</td>
+                        <td>{{ $mk->sks }}</td>
+                        <td>{{ $mk->semester}}</td>
+                        <td>{{ $mk->jurusan }}</td>
                         <td>
-                            <a href="{{ route('jadwal.edit', $j->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{{ route('matakuliah.edit', $mk->id) }}" class="btn btn-warning btn-sm">Edit</a>
                         </td>
                         <td>
-                            <form action="{{ route('jadwal.destroy', $j->id) }}" method="POST" style="display:inline">
+                            <form action="{{ route('matakuliah.destroy', $mk->id) }}" method="POST" style="display:inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm"

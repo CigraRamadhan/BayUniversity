@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('nidn');
             $table->string('nama_dosen');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('no_hp');
             $table->text('alamat');
             $table->timestamps();
