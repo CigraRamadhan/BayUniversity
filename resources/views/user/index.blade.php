@@ -10,35 +10,46 @@
 <body class="bg-light">
 
     <div class="container" style="max-width: 1000px; margin-top: 48px;">
+        <!-- Menu Home -->
+        <div class="mb-3">
+            <a href="/" class="btn btn-secondary btn-sm"><i class="bi bi-house-door"></i> Home</a>
+        </div>
+
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h5 class="mb-0 fw-semibold">Data User</h5>
             <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm">Tambah User</a>
         </div>
 
-        @if(session('success'))<div class="alert alert-success">{{ session('success') }}</div>@endif
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
 
-        <table class="table table-bordered">
-            <thead><tr><th>No</th><th>Nama</th><th>Email</th><th>Role</th><th>Aksi</th></tr></thead>
-            <tbody>
-                @forelse($users as $index => $user)
-                <tr>
-                    <td>{{ $index+1 }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td><span class="badge bg-primary">{{ ucfirst($user->role) }}</span></td>
-                    <td>
-                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="d-inline">
-                            @csrf @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">Hapus</button>
-                        </form>
-                    </td>
-                </tr>
-                @empty
-                <tr><td colspan="5" class="text-center">Belum ada data user</td></tr>
-                @endforelse
-            </tbody>
-        <tr>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <tr><th>No</th><th>Nama</th><th>Email</th><th>Role</th><th>Aksi</th></tr>
+                </thead>
+                <tbody>
+                    @forelse($users as $index => $user)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ ucfirst($user->role) }}</td>
+                        <td>
+                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="d-inline">
+                                @csrf @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @empty
+                    <td><td colspan="5" class="text-center">Belum ada data user</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>

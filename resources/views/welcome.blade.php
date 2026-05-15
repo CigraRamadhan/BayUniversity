@@ -19,20 +19,27 @@
         .logo-box { background: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
         .logo-box span { color: #667eea; font-weight: bold; font-size: 18px; }
         .btn-group-custom { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .navbar-toggler { background-color: white; border: none; }
+        @media (min-width: 992px) {
+            .navbar-toggler { display: block !important; }
+            .collapse:not(.show) { display: none !important; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Navbar dengan Logo -->
+    <!-- Navbar dengan Logo + Hamburger Menu -->
     <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container">
             <a class="navbar-brand text-white fw-bold fs-4" href="/">
                 <div class="logo-box"><span>B</span></div>
                 BayUniversity
             </a>
+            <!-- Tombol Hamburger (garis tiga) - muncul di semua ukuran -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <!-- Menu yang muncul saat hamburger diklik -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="/">Home</a></li>

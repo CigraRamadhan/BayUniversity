@@ -10,39 +10,50 @@
 <body class="bg-light">
 
     <div class="container" style="max-width: 1200px; margin-top: 48px;">
+        <!-- Menu Home -->
+        <div class="mb-3">
+            <a href="/" class="btn btn-secondary btn-sm"><i class="bi bi-house-door"></i> Home</a>
+        </div>
+
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h5 class="mb-0 fw-semibold">Data Nilai</h5>
             <a href="{{ route('nilai.create') }}" class="btn btn-primary btn-sm">Tambah Nilai</a>
         </div>
 
-        @if(session('success'))<div class="alert alert-success">{{ session('success') }}</div>@endif
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
 
-        <table class="table table-bordered">
-            <thead><tr><th>No</th><th>Mahasiswa</th><th>Mata Kuliah</th><th>Tugas</th><th>UTS</th><th>UAS</th><th>Nilai Akhir</th><th>Grade</th><th>Aksi</th></tr></thead>
-            <tbody>
-                @forelse($nilai as $index => $n)
-                <tr>
-                    <td>{{ $index+1 }}</td>
-                    <td>{{ $n->mahasiswa->nama ?? '-' }}</td>
-                    <td>{{ $n->matakuliah->nama_matakuliah ?? '-' }}</td>
-                    <td>{{ $n->nilai_tugas ?? '-' }}</td>
-                    <td>{{ $n->nilai_uts ?? '-' }}</td>
-                    <td>{{ $n->nilai_uas ?? '-' }}</td>
-                    <td><strong>{{ $n->nilai_akhir ?? '-' }}</strong></td>
-                    <td>{{ $n->grade ?? '-' }}</td>
-                    <td>
-                        <a href="{{ route('nilai.edit', $n->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('nilai.destroy', $n->id) }}" method="POST" class="d-inline">
-                            @csrf @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">Hapus</button>
-                        </form>
-                    </td>
-                </tr>
-                @empty
-                <tr><td colspan="9" class="text-center">Belum ada data nilai</td></tr>
-                @endforelse
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <tr><th>No</th><th>Mahasiswa</th><th>Mata Kuliah</th><th>Tugas</th><th>UTS</th><th>UAS</th><th>Nilai Akhir</th><th>Grade</th><th>Aksi</th></tr>
+                </thead>
+                <tbody>
+                    @forelse($nilai as $index => $n)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $n->mahasiswa->nama ?? '-' }} ({{ $n->mahasiswa->nim ?? '-' }})</td>
+                        <td>{{ $n->matakuliah->nama_matakuliah ?? '-' }}</td>
+                        <td>{{ $n->nilai_tugas ?? '-' }}</td>
+                        <td>{{ $n->nilai_uts ?? '-' }}</td>
+                        <td>{{ $n->nilai_uas ?? '-' }}</td>
+                        <td>{{ $n->nilai_akhir ?? '-' }}</td>
+                        <td>{{ $n->grade ?? '-' }}</td>
+                        <td>
+                            <a href="{{ route('nilai.edit', $n->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('nilai.destroy', $n->id) }}" method="POST" class="d-inline">
+                                @csrf @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @empty
+                    <td><td colspan="9" class="text-center">Belum ada data nilai</td></td>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>

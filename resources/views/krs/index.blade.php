@@ -10,37 +10,48 @@
 <body class="bg-light">
 
     <div class="container" style="max-width: 1200px; margin-top: 48px;">
+        <!-- Menu Home -->
+        <div class="mb-3">
+            <a href="/" class="btn btn-secondary btn-sm"><i class="bi bi-house-door"></i> Home</a>
+        </div>
+
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h5 class="mb-0 fw-semibold">Data KRS</h5>
             <a href="{{ route('krs.create') }}" class="btn btn-primary btn-sm">Tambah KRS</a>
         </div>
 
-        @if(session('success'))<div class="alert alert-success">{{ session('success') }}</div>@endif
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
 
-        <table class="table table-bordered">
-            <thead><tr><th>No</th><th>Mahasiswa</th><th>Mata Kuliah</th><th>Semester</th><th>Tahun Akademik</th><th>Status</th><th>Aksi</th></tr></thead>
-            <tbody>
-                @forelse($krs as $index => $k)
-                <tr>
-                    <td>{{ $index+1 }}</td>
-                    <td>{{ $k->mahasiswa->nama ?? '-' }}</td>
-                    <td>{{ $k->matakuliah->nama_matakuliah ?? '-' }}</td>
-                    <td>{{ $k->semester }}</td>
-                    <td>{{ $k->tahun_akademik }}</td>
-                    <td>{{ $k->status }}</td>
-                    <td>
-                        <a href="{{ route('krs.edit', $k->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('krs.destroy', $k->id) }}" method="POST" class="d-inline">
-                            @csrf @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">Hapus</button>
-                        </form>
-                    </td>
-                </tr>
-                @empty
-                <tr><td colspan="7" class="text-center">Belum ada data KRS</td></tr>
-                @endforelse
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <tr><th>No</th><th>Mahasiswa</th><th>Mata Kuliah</th><th>Semester</th><th>Tahun Akademik</th><th>Status</th><th>Aksi</th></tr>
+                </thead>
+                <tbody>
+                    @forelse($krs as $index => $k)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $k->mahasiswa->nama ?? '-' }} ({{ $k->mahasiswa->nim ?? '-' }})</td>
+                        <td>{{ $k->matakuliah->nama_matakuliah ?? '-' }}</td>
+                        <td>{{ $k->semester }}</td>
+                        <td>{{ $k->tahun_akademik }}</td>
+                        <td>{{ $k->status }}</td>
+                        <td>
+                            <a href="{{ route('krs.edit', $k->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('krs.destroy', $k->id) }}" method="POST" class="d-inline">
+                                @csrf @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @empty
+                    <td><td colspan="7" class="text-center">Belum ada data KRS</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>
