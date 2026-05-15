@@ -63,7 +63,7 @@
             <h1 class="display-4 fw-bold" style="color: #764ba2;">Selamat Datang di BayUniversity</h1>
             <p class="lead text-secondary">Sistem Informasi Akademik Terintegrasi</p>
             <p class="mb-4">Kelola data Jurusan, Kelas, Mahasiswa, Dosen, Mata Kuliah, Jadwal, KRS, Nilai, dan User dengan mudah.</p>
-            <div class="btn-group-custom">
+            <!-- <div class="btn-group-custom">
                 <a href="/mahasiswa" class="btn btn-primary btn-sm"><i class="bi bi-people"></i> Mahasiswa</a>
                 <a href="/jurusan" class="btn btn-outline-secondary btn-sm"><i class="bi bi-book"></i> Jurusan</a>
                 <a href="/kelas" class="btn btn-outline-success btn-sm"><i class="bi bi-building"></i> Kelas</a>
@@ -73,7 +73,7 @@
                 <a href="/krs" class="btn btn-outline-primary btn-sm"><i class="bi bi-card-list"></i> KRS</a>
                 <a href="/nilai" class="btn btn-outline-success btn-sm"><i class="bi bi-star"></i> Nilai</a>
                 <a href="/user" class="btn btn-outline-secondary btn-sm"><i class="bi bi-person-circle"></i> User</a>
-            </div>
+            </div> -->
         </div>
 
         <!-- Menu Card (9 card) -->
