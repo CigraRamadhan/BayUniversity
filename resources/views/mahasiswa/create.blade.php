@@ -10,7 +10,6 @@
 <body class="bg-white">
 
     <div class="container" style="max-width: 540px; margin-top: 48px;">
-
         <h5 class="mb-1 fw-semibold">Tambah Mahasiswa</h5>
         <p class="text-muted mb-4" style="font-size: 0.875rem;">Isi semua field di bawah ini.</p>
 
@@ -30,7 +29,7 @@
             <div class="mb-3">
                 <label class="form-label fw-semibold">Jurusan</label>
                 <select name="jurusan_id" class="form-control" required>
-                    <option value="">Pilih Jurusan</option>
+                    <option value="">-- Pilih Jurusan --</option>
                     @foreach($jurusan as $j)
                         <option value="{{ $j->id }}">{{ $j->nama_jurusan }}</option>
                     @endforeach
@@ -40,7 +39,7 @@
             <div class="mb-4">
                 <label class="form-label fw-semibold">Kelas</label>
                 <select name="kelas_id" class="form-control" required>
-                    <option value="">Pilih Kelas</option>
+                    <option value="">-- Pilih Kelas --</option>
                     @foreach($kelas as $k)
                         <option value="{{ $k->id }}">{{ $k->nama_kelas }}</option>
                     @endforeach
@@ -51,7 +50,6 @@
                 <a href="{{ route('mahasiswa.index') }}" class="btn btn-secondary">Batal</a>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
-
         </form>
     </div>
 
