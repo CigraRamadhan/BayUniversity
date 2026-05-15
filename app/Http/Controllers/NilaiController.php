@@ -3,66 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nilai;
-use App\Models\Mahasiswa;
-use App\Models\Matakuliah;
 use Illuminate\Http\Request;
 
 class NilaiController extends Controller
 {
     public function index()
     {
-        $nilai = Nilai::with(['mahasiswa', 'matakuliah'])->get();
+        $nilai = Nilai::all();
         return view('nilai.index', compact('nilai'));
     }
 
     public function create()
     {
-        $mahasiswa = Mahasiswa::all();
-        $matakuliah = Matakuliah::all();
-        return view('nilai.create', compact('mahasiswa', 'matakuliah'));
+        return view('nilai.create');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'mahasiswa_id' => 'required|exists:mahasiswas,id',
-            'matakuliah_id' => 'required|exists:matakuliah,id',
-            'nilai_tugas' => 'nullable|numeric|min:0|max:100',
-            'nilai_uts' => 'nullable|numeric|min:0|max:100',
-            'nilai_uas' => 'nullable|numeric|min:0|max:100',
-        ]);
-
         Nilai::create($request->all());
-        return redirect()->route('nilai.index')->with('success', 'Nilai berhasil ditambahkan');
+        return redirect()->route('nilai.index');
     }
 
     public function edit($id)
     {
-        $nilai = Nilai::findOrFail($id);
-        $mahasiswa = Mahasiswa::all();
-        $matakuliah = Matakuliah::all();
-        return view('nilai.edit', compact('nilai', 'mahasiswa', 'matakuliah'));
+        $nilai = Nilai::find($id);
+        return view('nilai.edit', compact('nilai'));
     }
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'mahasiswa_id' => 'required|exists:mahasiswas,id',
-            'matakuliah_id' => 'required|exists:matakuliah,id',
-            'nilai_tugas' => 'nullable|numeric|min:0|max:100',
-            'nilai_uts' => 'nullable|numeric|min:0|max:100',
-            'nilai_uas' => 'nullable|numeric|min:0|max:100',
-        ]);
-
-        $nilai = Nilai::findOrFail($id);
-        $nilai->update($request->all());
-        return redirect()->route('nilai.index')->with('success', 'Nilai berhasil diupdate');
+        Nilai::find($id)->update($request->all());
+        return redirect()->route('nilai.index');
     }
 
     public function destroy($id)
     {
-        $nilai = Nilai::findOrFail($id);
-        $nilai->delete();
-        return redirect()->route('nilai.index')->with('success', 'Nilai berhasil dihapus');
+        Nilai::destroy($id);
+        return redirect()->route('nilai.index');
     }
 }

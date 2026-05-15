@@ -33,8 +33,8 @@
                     @forelse($matakuliah as $index => $mk)
                     <tr>
                         <td>{{ $index + 1 }}</td>
-                        <td>{{ $mk->kode_matakuliah }}</td>
-                        <td>{{ $mk->nama_matakuliah }}</td>
+                        <td>{{ $mk->kode_matkul}}</td>
+                        <td>{{ $mk->nama_matkul}}</td>
                         <td>{{ $mk->sks }}</td>
                         <td>{{ $mk->semester }}</td>
                         <td>

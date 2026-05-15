@@ -3,23 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
-use App\Models\Jurusan;
-use App\Models\Kelas;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
 {
     public function index()
     {
-        $mahasiswa = Mahasiswa::with(['jurusan', 'kelas'])->get();
-        return view('mahasiswa.index', compact('mahasiswa'));
+        $mahasiswas = Mahasiswa::all();
+        return view('mahasiswa.index', compact('mahasiswas'));
     }
 
     public function create()
     {
-        $jurusan = Jurusan::all();
-        $kelas = Kelas::all();
-        return view('mahasiswa.create', compact('jurusan', 'kelas'));
+        return view('mahasiswa.create');
     }
 
     public function store(Request $request)
@@ -31,9 +27,7 @@ class MahasiswaController extends Controller
     public function edit($id)
     {
         $mahasiswa = Mahasiswa::find($id);
-        $jurusan = Jurusan::all();
-        $kelas = Kelas::all();
-        return view('mahasiswa.edit', compact('mahasiswa', 'jurusan', 'kelas'));
+        return view('mahasiswa.edit', compact('mahasiswa'));
     }
 
     public function update(Request $request, $id)

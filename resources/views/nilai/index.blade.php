@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
+
 <body class="bg-light">
 
     <div class="container" style="max-width: 1200px; margin-top: 48px;">
@@ -27,33 +29,47 @@
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead class="table-light">
-                    <tr><th>No</th><th>Mahasiswa</th><th>Mata Kuliah</th><th>Tugas</th><th>UTS</th><th>UAS</th><th>Nilai Akhir</th><th>Grade</th><th>Aksi</th></tr>
+                    <tr>
+                        <th>No</th>
+                        <th>Mahasiswa</th>
+                        <th>Mata Kuliah</th>
+                        <th>Tugas</th>
+                        <th>UTS</th>
+                        <th>UAS</th>
+                        <th>Nilai Akhir</th>
+                        <th>Grade</th>
+                        <th>Aksi</th>
+                    </tr>
                 </thead>
                 <tbody>
                     @forelse($nilai as $index => $n)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $n->mahasiswa->nama ?? '-' }} ({{ $n->mahasiswa->nim ?? '-' }})</td>
-                        <td>{{ $n->matakuliah->nama_matakuliah ?? '-' }}</td>
-                        <td>{{ $n->nilai_tugas ?? '-' }}</td>
-                        <td>{{ $n->nilai_uts ?? '-' }}</td>
-                        <td>{{ $n->nilai_uas ?? '-' }}</td>
-                        <td>{{ $n->nilai_akhir ?? '-' }}</td>
-                        <td>{{ $n->grade ?? '-' }}</td>
-                        <td>
-                            <a href="{{ route('nilai.edit', $n->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('nilai.destroy', $n->id) }}" method="POST" class="d-inline">
-                                @csrf @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $n->nama_mahasiswa}}</td>
+                            <td>{{ $n->mata_kuliah}}</td>
+                            <td>{{ $n->tugas}}</td>
+                            <td>{{ $n->uts}}</td>
+                            <td>{{ $n->uas}}</td>
+                            <td>{{ $n->nilai_akhir}}</td>
+                            <td>{{ $n->grade}}</td>
+                            <td>
+                                <a href="{{ route('nilai.edit', $n->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <form action="{{ route('nilai.destroy', $n->id) }}" method="POST" class="d-inline">
+                                    @csrf @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Yakin hapus?')">Hapus</button>
+                                </form>
+                            </td>
+                        </tr>
                     @empty
-                    <td><td colspan="9" class="text-center">Belum ada data nilai</td></td>
+                        <td>
+                        <td colspan="9" class="text-center">Belum ada data nilai</td>
+                        </td>
                     @endforelse
                 </tbody>
             </table>
         </div>
     </div>
 </body>
+
 </html>

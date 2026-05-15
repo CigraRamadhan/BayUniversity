@@ -10,11 +10,10 @@ return new class extends Migration
     {
         Schema::create('krs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('mahasiswa_id')->constrained('mahasiswas')->onDelete('cascade');
-            $table->foreignId('matakuliah_id')->constrained('matakuliah')->onDelete('cascade');
-            $table->string('semester', 10);
-            $table->string('tahun_akademik', 20);
-            $table->enum('status', ['aktif', 'batal', 'selesai'])->default('aktif');
+            $table->string('mahasiswa');
+            $table->string('matakuliah');
+            $table->string('semester');
+            $table->string('tahun_akademik');
             $table->timestamps();
         });
     }

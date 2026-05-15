@@ -22,7 +22,7 @@
             </div>
 
             <div class="mb-4">
-                <label class="form-label fw-semibold">Nama Kelas</label>
+                <label class="form-label fw-semibold">Ruangan Kelas</label>
                 <input type="text" name="nama_kelas" class="form-control" required>
             </div>
 
